@@ -1,11 +1,19 @@
 type ButtonProps = {
   text: string;
   variant?: "primary" | "secondary";
+  onClick?: () => void;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  type?: "button" | "submit" | "reset";
 };
 
 export default function Button({
   text,
   variant = "primary",
+  onClick,
+  disabled = false,
+  fullWidth = false,
+  type = "button",
 }: ButtonProps) {
   const styles =
     variant === "primary"
@@ -14,8 +22,12 @@ export default function Button({
 
   return (
     <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
       className={`
         ${styles}
+        ${fullWidth ? "w-full" : ""}
         px-6
         py-3
         rounded-xl
@@ -24,6 +36,9 @@ export default function Button({
         duration-300
         hover:scale-105
         active:scale-95
+        disabled:opacity-50
+        disabled:cursor-not-allowed
+        disabled:hover:scale-100
       `}
     >
       {text}

@@ -1,5 +1,5 @@
 "use client";
-
+import Card from "../ui/Card";
 import { useState } from "react";
 
 import AttendanceResult from "./AttendanceResult";
